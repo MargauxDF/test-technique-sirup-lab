@@ -29,7 +29,6 @@ const ListOfBooks = () => {
   useEffect(() => {
     getListOfBooks().then((booksList) => {
       setBooks(booksList.data.viewer.books.hits);
-      console.log(booksList.data.viewer.books.hits);
     });
   },[]);
 
@@ -38,8 +37,8 @@ const ListOfBooks = () => {
       {books && books.map((book) => {
         return (
           <div className="books-container" key={book.id}>
-            <h3>{book.displayTitle}</h3>
-            <img className="books-img" src={book.url} alt={book.displayTitle} />
+            <h3 className={book.valid ? "" : "not-valid-books-title"}>{book.displayTitle}</h3>
+            <img className={book.valid ? "valid-books-img" : "not-valid-books-img"} src={book.url} alt={book.displayTitle} />
           </div>
         )
       })}

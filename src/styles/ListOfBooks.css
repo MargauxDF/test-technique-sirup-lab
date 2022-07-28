@@ -10,7 +10,17 @@
     width: 25%;
 }
 
-.books-img {
+.valid-books-img {
     width: 200px;
     height: 300px;
+}
+
+.not-valid-books-img {
+    filter: grayscale(100%);
+    width: 200px;
+    height: 300px;
+}
+
+.not-valid-books-title {
+    color: grey;
 }
