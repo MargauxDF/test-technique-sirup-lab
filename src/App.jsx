@@ -3,7 +3,6 @@ import ListOfBooks from "./views/ListOfBooks";
 import { Routes, Route } from "react-router-dom";
 import Book from "./views/Book";
 
-
 function App() {
   return (
     <div className="App">
