@@ -1,0 +1,17 @@
+.book-details {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.book-img {
+    width: 400px;
+    height: 600px;
+}
+
+.return-link {
+    margin-top: 10px;
+}

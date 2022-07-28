@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import "../styles/ListOfBooks.css";
+import { Link } from "react-router-dom";
 
 const ListOfBooks = () => {
   const [books, setBooks] = useState(null);
@@ -37,8 +38,10 @@ const ListOfBooks = () => {
       {books && books.map((book) => {
         return (
           <div className="books-container" key={book.id}>
-            <h3 className={book.valid ? "" : "not-valid-books-title"}>{book.displayTitle}</h3>
-            <img className={book.valid ? "valid-books-img" : "not-valid-books-img"} src={book.url} alt={book.displayTitle} />
+            <Link to={book.valid && `/book/${book.id}`} state={{ book }}>
+              <h3 className={book.valid ? "" : "not-valid-books-title"}>{book.displayTitle}</h3>
+              <img className={book.valid ? "valid-books-img" : "not-valid-books-img"} src={book.url} alt={book.displayTitle} />
+            </Link>
           </div>
         )
       })}
