@@ -1,0 +1,26 @@
+.books-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.books-container {
+    margin: 10px;
+    width: 25%;
+}
+
+.valid-books-img {
+    width: 200px;
+    height: 300px;
+}
+
+.not-valid-books-img {
+    filter: grayscale(100%);
+    width: 200px;
+    height: 300px;
+}
+
+.not-valid-books-title {
+    color: grey;
+}
