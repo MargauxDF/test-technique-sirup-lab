@@ -8,24 +8,24 @@ const Chapters = ({ bookId }) => {
 
   const getChapters = async () => {
     let chaptersList;
-    await axios.post(
-      'https://api.lelivrescolaire.fr/graphql',
-      {
-        'query': 'query chapters($bookId:Int){viewer{chapters(bookIds:[$bookId]){hits{id title url valid}}}}',
-        'variables': {
-          'bookId': `${bookId}`
-        }
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8'
-        }
-      }
-    ).then((res) => {
+    try {
+      const res = await axios.post(
+        'https://api.lelivrescolaire.fr/graphql',
+        {
+          'query': 'query chapters($bookId:Int){viewer{chapters(bookIds:[$bookId]){hits{id title url valid}}}}',
+          'variables': {
+            'bookId': `${bookId}`
+          }
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+          }
+        })
       chaptersList = res.data;
-    }).catch((err) => {
+    } catch (err) {
       console.log(err);
-    })
+    }
 
     return chaptersList;
   }
