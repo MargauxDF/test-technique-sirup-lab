@@ -11,22 +11,22 @@ const ListOfBooks = () => {
   const [books, setBooks] = useState(null);
   const getListOfBooks = async () => {
     let booksList;
-    await axios.post(
-      'https://api.lelivrescolaire.fr/graphql',
-      {
-        'query': 'query{viewer{books{hits{id displayTitle url subjects{name}levels{name}valid}}}}',
-        'variables': {}
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8'
-        }
-      }
-    ).then((res) => {
+    try {
+      const res = await axios.post(
+        'https://api.lelivrescolaire.fr/graphql',
+        {
+          'query': 'query{viewer{books{hits{id displayTitle url subjects{name}levels{name}valid}}}}',
+          'variables': {}
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+          }
+        })
       booksList = res.data;
-    }).catch((err) => {
+    } catch (err) {
       console.log(err);
-    });
+    }
 
     return booksList;
   }
