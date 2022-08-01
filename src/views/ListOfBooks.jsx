@@ -65,13 +65,18 @@ const ListOfBooks = () => {
       />
       <div className="books-list">
         {books && books.map((book) => {
+          let className = "books-img";
+          if (!book.valid) {
+            className += " disabled";
+          }
+
           if (activeLevel === "" || book.levels.some((level) => level.name === activeLevel)) {
             if (activeSubject === "" || book.subjects.some((subject) => subject.name === activeSubject)) {
               return (
                 <div className="books-container" key={book.id}>
                   <Link to={book.valid && `/book/${book.id}`} state={{ book }}>
-                    <h3 className={book.valid ? "" : "not-valid-books-title"}>{book.displayTitle}</h3>
-                    <img className={book.valid ? "valid-books-img" : "not-valid-books-img"} src={book.url} alt={book.displayTitle} />
+                    <h3 className={!book.valid && "disabled"}>{book.displayTitle}</h3>
+                    <img className={className} src={book.url} alt={book.displayTitle} />
                   </Link>
                 </div>
               )

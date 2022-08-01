@@ -39,10 +39,15 @@ const Chapters = ({ bookId }) => {
   return (
     <div className="chapters-list">
       {chapters && chapters.map((chapter) => {
+        let className = "chapters-img";
+        if (!chapter.valid) {
+          className += " disabled";
+        }
+
         return (
           <div className="chapters-container" key={chapter.id}>
-            <p className={chapter.valid ? "" : "not-valid-books-title"}>{chapter.title}</p>
-            <img className={chapter.valid ? "valid-chapters-img" : "not-valid-chapters-img"} src={chapter.url} alt={chapter.title} />
+            <p className={!chapter.valid && "disabled"}>{chapter.title}</p>
+            <img className={className} src={chapter.url} alt={chapter.title} />
           </div>
         )
       })}

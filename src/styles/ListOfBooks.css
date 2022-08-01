@@ -10,17 +10,12 @@
     width: 25%;
 }
 
-.valid-books-img {
+.books-img {
     width: 200px;
     height: 300px;
 }
 
-.not-valid-books-img {
+.disabled {
     filter: grayscale(100%);
-    width: 200px;
-    height: 300px;
-}
-
-.not-valid-books-title {
     color: grey;
 }
