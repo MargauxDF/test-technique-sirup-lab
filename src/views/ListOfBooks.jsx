@@ -74,8 +74,8 @@ const ListOfBooks = () => {
             if (activeSubject === "" || book.subjects.some((subject) => subject.name === activeSubject)) {
               return (
                 <div className="books-container" key={book.id}>
-                  <Link to={book.valid && `/book/${book.id}`} state={{ book }}>
-                    <h3 className={!book.valid ?"disabled" : undefined}>{book.displayTitle}</h3>
+                  <Link to={`/book/${book.id}`} state={{ book }} className={!book.valid ? "disabled-link" : undefined }>
+                    <h3 className={!book.valid ? "disabled" : undefined}>{book.displayTitle}</h3>
                     <img className={className.toString()} src={book.url} alt={book.displayTitle} />
                   </Link>
                 </div>
