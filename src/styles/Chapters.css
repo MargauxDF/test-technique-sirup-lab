@@ -1,0 +1,21 @@
+.chapters-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.chapters-container {
+    margin: 10px;
+    width: 25%;
+}
+
+.chapters-img {
+    height: 100px;
+    width: 100px;
+}
+
+.disabled {
+    filter: grayscale(100%);
+    color: grey;
+}

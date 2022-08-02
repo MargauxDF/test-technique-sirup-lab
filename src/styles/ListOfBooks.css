@@ -1,0 +1,25 @@
+.books-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.books-container {
+    margin: 10px;
+    width: 25%;
+}
+
+.books-img {
+    width: 200px;
+    height: 300px;
+}
+
+.disabled {
+    filter: grayscale(100%);
+    color: grey;
+}
+
+.disabled-link {
+    pointer-events: none;
+}
