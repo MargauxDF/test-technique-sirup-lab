@@ -31,6 +31,12 @@ const Chapters = ({ bookId, value }) => {
   }
 
   useEffect(() => {
+    getChapters().then((chaptersList) => {
+      setChapters(chaptersList.data.viewer.chapters.hits)
+    });
+  }, [])
+
+  useEffect(() => {
     if (value !== '') {
       const filteredChapters = chapters.filter((chapter) => chapter.title.toLowerCase().includes(value.toLowerCase()));
       setChapters(filteredChapters);
