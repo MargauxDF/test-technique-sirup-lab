@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import axios from "axios";
 import "../styles/ListOfBooks.css";
 import { Link } from "react-router-dom";
@@ -46,6 +46,13 @@ const ListOfBooks = () => {
   // Get unique levels to display in the select option
   const levelsList = [...new Set(levels)]
 
+  const filters = useMemo(() => {
+      return books?.filter(book =>
+        (activeSubject === "" || book.subjects?.some(subject => subject.name === activeSubject))
+        && (activeLevel === "" || book.levels?.some(level => level.name === activeLevel)))
+    }, [activeSubject, activeLevel]
+  )
+
   return (
    <div className="book-list-page">
      <Filter
@@ -61,14 +68,12 @@ const ListOfBooks = () => {
        setActiveFilter={setActiveLevel}
       />
       <div className="books-list">
-        {books && books.map((book) => {
+        {filters && filters.map((book) => {
           let className = "books-img";
           if (!book.valid) {
             className += " disabled";
           }
 
-          if (activeLevel === "" || book.levels.some((level) => level.name === activeLevel)) {
-            if (activeSubject === "" || book.subjects.some((subject) => subject.name === activeSubject)) {
               return (
                 <div className="books-container" key={book.id}>
                   <Link to={`/book/${book.id}`} state={{ book }} className={!book.valid ? "disabled-link" : undefined }>
@@ -77,10 +82,7 @@ const ListOfBooks = () => {
                   </Link>
                 </div>
               )
-            }
-          } else {
-            return null;
-          }})
+           })
         }
       </div>
     </div>
