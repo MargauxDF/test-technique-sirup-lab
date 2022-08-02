@@ -51,8 +51,8 @@ const Chapters = ({ bookId, value }) => {
 
         return (
           <div className="chapters-container" key={chapter.id}>
-            <p className={!chapter.valid && "disabled"}>{chapter.title}</p>
-            <img className={className} src={chapter.url} alt={chapter.title} />
+            <p className={!chapter.valid ? "disabled" : undefined}>{chapter.title}</p>
+            <img className={className.toString()} src={chapter.url} alt={chapter.title} />
           </div>
         )
       })}

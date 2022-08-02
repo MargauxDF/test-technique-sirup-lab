@@ -75,8 +75,8 @@ const ListOfBooks = () => {
               return (
                 <div className="books-container" key={book.id}>
                   <Link to={book.valid && `/book/${book.id}`} state={{ book }}>
-                    <h3 className={!book.valid && "disabled"}>{book.displayTitle}</h3>
-                    <img className={className} src={book.url} alt={book.displayTitle} />
+                    <h3 className={!book.valid ?"disabled" : undefined}>{book.displayTitle}</h3>
+                    <img className={className.toString()} src={book.url} alt={book.displayTitle} />
                   </Link>
                 </div>
               )
