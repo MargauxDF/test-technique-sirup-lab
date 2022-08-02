@@ -3,8 +3,8 @@ import axios from "axios";
 import "../styles/Chapters.css";
 
 
-const Chapters = ({ bookId }) => {
-  const [chapters, setChapters] = useState(null);
+const Chapters = ({ bookId, value }) => {
+  const [chapters, setChapters] = useState([]);
 
   const getChapters = async () => {
     let chaptersList;
@@ -31,10 +31,15 @@ const Chapters = ({ bookId }) => {
   }
 
   useEffect(() => {
-    getChapters().then((chaptersList) => {
-      setChapters(chaptersList.data.viewer.chapters.hits)
-    });
-  }, [])
+    if (value !== '') {
+      const filteredChapters = chapters.filter((chapter) => chapter.title.toLowerCase().includes(value.toLowerCase()));
+      setChapters(filteredChapters);
+    } else {
+      getChapters().then((chaptersList) => {
+        setChapters(chaptersList.data.viewer.chapters.hits)
+      });
+    }
+  }, [value])
 
   return (
     <div className="chapters-list">
