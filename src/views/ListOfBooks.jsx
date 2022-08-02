@@ -2,8 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import "../styles/ListOfBooks.css";
 import { Link } from "react-router-dom";
-import SubjectFilter from "../components/SubjectFilter";
-import LevelFilter from "../components/LevelFilter";
+import Filter from "../components/Filter";
 
 const ListOfBooks = () => {
   const [activeSubject, setActiveSubject] = useState("");
@@ -37,31 +36,29 @@ const ListOfBooks = () => {
     });
   },[]);
 
-  const onlyUnique = (value, index, self) => {
-    return self.indexOf(value) === index;
-  }
-
   // Filter books by subject
   const subjects = books?.flatMap((book) => book.subjects?.map((subject) => subject.name));
   // Get unique subjects to display in the select option
-  const subjectsList = subjects?.filter(onlyUnique);
+  const subjectsList = [...new Set(subjects)]
 
   // Filter books by levels
   const levels = books?.flatMap((book) => book.levels?.map((level) => level.name));
   // Get unique levels to display in the select option
-  const levelsList = levels?.filter(onlyUnique);
+  const levelsList = [...new Set(levels)]
 
   return (
    <div className="book-list-page">
-     <SubjectFilter
-        subjectsList={subjectsList}
-        activeSubject={activeSubject}
-        setActiveSubject={setActiveSubject}
+     <Filter
+        name="sujets"
+        filtersList={subjectsList}
+        activeFilter={activeSubject}
+        setActiveFilter={setActiveSubject}
       />
-     <LevelFilter
-        levelsList={levelsList}
-        activeLevel={activeLevel}
-        setActiveLevel={setActiveLevel}
+     <Filter
+       name="niveaux"
+       filtersList={levelsList}
+       activeFilter={activeLevel}
+       setActiveFilter={setActiveLevel}
       />
       <div className="books-list">
         {books && books.map((book) => {
